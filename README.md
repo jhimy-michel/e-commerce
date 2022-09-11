@@ -17,3 +17,6 @@ npm run test
 ```bash
 npm run build
 ```
+
+Video stopped at 2:18:45 
+link: https://www.youtube.com/watch?v=1DklrGoAxDE&ab_channel=freeCodeCamp.org

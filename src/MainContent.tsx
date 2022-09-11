@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 interface UserListType {
   id: number;
   name: string;
+  img: string;
   phone: string;
 }
 
@@ -15,10 +16,10 @@ const initialState: CustomerState = {
   pageTitle: 'Customer',
   customerCount: 0,
   userList: [
-    { id: 1, name: 'testUser1', phone: '123-234' },
-    { id: 2, name: 'testUser2', phone: '123-234' },
-    { id: 3, name: 'testUser3', phone: '123-234' },
-    { id: 4, name: 'testUser4', phone: '123-234' }
+    { id: 1, img: 'https://picsum.photos/id/1010/60', name: 'testUser1', phone: '123-234' },
+    { id: 2, img: 'https://picsum.photos/id/1011/60', name: 'testUser2', phone: '123-234' },
+    { id: 3, img: 'https://picsum.photos/id/1012/60', name: 'testUser3', phone: '123-234' },
+    { id: 4, img: 'https://picsum.photos/id/1013/60', name: 'testUser4', phone: '123-234' }
   ]
 };
 
@@ -27,8 +28,22 @@ const MainContent = (): JSX.Element => {
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const handleRefresh = () => {
-    console.log('hola');
     setCustomerState({ ...customerState, customerCount: customerState.customerCount + 1 });
+  };
+
+  const renderTableBody = (): JSX.Element[] => {
+    return customerState.userList.map((customer: UserListType) => {
+      return (
+        <tr key={customer.id}>
+          <td>{customer.id}</td>
+          <td>
+            <img src={customer.img} alt="Customer" />
+          </td>
+          <td>{customer.name}</td>
+          <td>{customer.phone}</td>
+        </tr>
+      );
+    });
   };
 
   return (
@@ -41,25 +56,16 @@ const MainContent = (): JSX.Element => {
           Refresh
         </button>
       </h4>
-      <table className="table">
-        <thead>
+      <table className="table table-striped table-hover">
+        <thead className="thead-dark">
           <tr>
             <td>#</td>
+            <td>photo</td>
             <td>name</td>
             <td>phone</td>
           </tr>
         </thead>
-        <tbody>
-          {customerState.userList.map((customer: UserListType) => {
-            return (
-              <tr key={customer.id}>
-                <td>{customer.id}</td>
-                <td>{customer.name}</td>
-                <td>{customer.phone}</td>
-              </tr>
-            );
-          })}
-        </tbody>
+        <tbody>{renderTableBody()}</tbody>
       </table>
     </>
   );
