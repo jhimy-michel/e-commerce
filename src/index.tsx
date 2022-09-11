@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import NavBar from './App';
+import App from './App';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -11,6 +11,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <NavBar />
+    <App />
   </React.StrictMode>
 );
