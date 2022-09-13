@@ -1,5 +1,5 @@
 import React from "react";
-import MainContent from "./MainContent";
+import MainContent from "./CustomerList";
 import NavBar from "./NavBar";
 
 const App = (): JSX.Element => {

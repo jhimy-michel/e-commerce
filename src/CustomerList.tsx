@@ -31,13 +31,26 @@ const MainContent = (): JSX.Element => {
     setCustomerState({ ...customerState, customerCount: customerState.customerCount + 1 });
   };
 
+  const updatePicture = (cust: UserListType, index: number): void => {
+    console.log(cust);
+    const custArray = customerState.userList;
+    custArray[index].img = 'https://picsum.photos/id/104/60';
+
+    setCustomerState({ ...customerState, userList: custArray });
+  };
+
   const renderTableBody = (): JSX.Element[] => {
-    return customerState.userList.map((customer: UserListType) => {
+    return customerState.userList.map((customer: UserListType, index: number) => {
       return (
         <tr key={customer.id}>
           <td>{customer.id}</td>
           <td>
             <img src={customer.img} alt="Customer" />
+            <div>
+              <button className="btn btn-sm btn-secondary" onClick={() => updatePicture(customer, index)}>
+                Change Picture
+              </button>
+            </div>
           </td>
           <td>{customer.name}</td>
           <td>{customer.phone}</td>
