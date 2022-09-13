@@ -23,7 +23,7 @@ const initialState: CustomerState = {
   ]
 };
 
-const MainContent = (): JSX.Element => {
+const CustomerList = (): JSX.Element => {
   const [customerState, setCustomerState] = useState<CustomerState>(initialState);
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -84,4 +84,4 @@ const MainContent = (): JSX.Element => {
   );
 };
 
-export default MainContent;
+export default CustomerList;
