@@ -17,7 +17,19 @@ const Product = ({
           <div className="text-muted"># {product.id}</div>
           <h5 className="pt-2 border-top">{product.productName}</h5>
           <div>$ {product.price}</div>
-          <div className="card-footer text-right">{children}</div>
+          <div className="card-footer text-end me-2">
+            
+            <div className="float-left">
+              <span className="badge bg-light text-dark"> {prod.quantity}</span>
+              
+              <div className="btn-group">
+                <button className="btn btn-outline-success">+</button>
+                <button className="btn btn-outline-danger">-</button>
+              </div>
+            </div>
+            
+            <div className="float-right">{children}</div>
+          </div>
         </div>
       </div>
     </div>
