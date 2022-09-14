@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import Product from './Product';
 
-interface Products {
+export interface Products {
   id: number;
   productName: string;
   price: number;
@@ -21,9 +22,17 @@ const initialState: ShoppingState = {
 const ShoppingCart = (): JSX.Element => {
   const [products, setProducts] = useState<ShoppingState>(initialState);
   return (
-    <div>
+    <div className="container-fluid">
       <h4>Shopping Cart</h4>
-      <div></div>
+      <div className="row">
+        {products.products.map((prod, index) => {
+          return (
+            <Product key={index} prod={prod}>
+              <button className="btn btn-primary">Buy now</button>
+            </Product>
+          );
+        })}
+      </div>
     </div>
   );
 };
