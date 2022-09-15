@@ -21,13 +21,22 @@ const initialState: ShoppingState = {
 
 const ShoppingCart = (): JSX.Element => {
   const [products, setProducts] = useState<ShoppingState>(initialState);
+
+  const handleIncrement = (prod: Products) => {
+    console.log('Efe: ', prod);
+  };
+
+  const handleDecrement = (prod: Products) => {
+    console.log('efe 2:', prod);
+  };
+
   return (
     <div className="container-fluid">
       <h4>Shopping Cart</h4>
       <div className="row">
         {products.products.map((prod, index) => {
           return (
-            <Product key={index} prod={prod}>
+            <Product key={index} prod={prod} onIncrement={handleIncrement} onDecrement={handleDecrement}>
               <button className="btn btn-primary">Buy now</button>
             </Product>
           );
