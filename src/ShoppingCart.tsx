@@ -24,10 +24,18 @@ const ShoppingCart = (): JSX.Element => {
 
   const handleIncrement = (prod: Products) => {
     console.log('Efe: ', prod);
+    const allProducts = products.products;
+    const index = allProducts.findIndex((prodVal) => prodVal.id === prod.id);
+    allProducts[index].quantity += 1;
+    setProducts({ products: allProducts });
   };
 
   const handleDecrement = (prod: Products) => {
     console.log('efe 2:', prod);
+    const allProducts = products.products;
+    const index = allProducts.findIndex((prodVal) => prodVal.id === prod.id);
+    allProducts[index].quantity -= 1;
+    setProducts({ products: allProducts });
   };
 
   return (
