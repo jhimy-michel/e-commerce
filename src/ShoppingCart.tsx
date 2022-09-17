@@ -24,18 +24,31 @@ const ShoppingCart = (): JSX.Element => {
 
   const handleIncrement = (prod: Products) => {
     console.log('Efe: ', prod);
-    const allProducts = products.products;
-    const index = allProducts.findIndex((prodVal) => prodVal.id === prod.id);
-    allProducts[index].quantity += 1;
-    setProducts({ products: allProducts });
+    if (prod.quantity < 10) {
+      const allProducts = products.products;
+      const index = allProducts.findIndex((prodVal) => prodVal.id === prod.id);
+      allProducts[index].quantity++;
+      setProducts({ products: allProducts });
+    }
   };
 
   const handleDecrement = (prod: Products) => {
     console.log('efe 2:', prod);
+    if (prod.quantity >= 0) {
+      const allProducts = products.products;
+      const index = allProducts.findIndex((prodVal) => prodVal.id === prod.id);
+      allProducts[index].quantity -= 1;
+      setProducts({ products: allProducts });
+    }
+  };
+
+  const handleDeleteProduct = (prod: Products) => {
     const allProducts = products.products;
     const index = allProducts.findIndex((prodVal) => prodVal.id === prod.id);
-    allProducts[index].quantity -= 1;
-    setProducts({ products: allProducts });
+    if (index !== -1) {
+      allProducts.splice(index, 1);
+      setProducts({ products: allProducts });
+    }
   };
 
   return (
@@ -44,7 +57,7 @@ const ShoppingCart = (): JSX.Element => {
       <div className="row">
         {products.products.map((prod, index) => {
           return (
-            <Product key={index} prod={prod} onIncrement={handleIncrement} onDecrement={handleDecrement}>
+            <Product key={index} prod={prod} onIncrement={handleIncrement} onDecrement={handleDecrement} onDelete={handleDeleteProduct}>
               <button className="btn btn-primary">Buy now</button>
             </Product>
           );
