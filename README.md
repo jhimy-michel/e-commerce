@@ -18,5 +18,7 @@ npm run test
 npm run build
 ```
 
-Video stopped at 3:56:17 
+This project was based on an example explained on this video:
 link: https://www.youtube.com/watch?v=1DklrGoAxDE&ab_channel=freeCodeCamp.org
+
+I made some updates for personal reasons.
