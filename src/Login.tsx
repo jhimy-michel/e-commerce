@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Login = (): JSX.Element => {
+function Login() {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [message, setMessage] = useState<React.ReactNode>(<></>);
@@ -32,13 +32,13 @@ const Login = (): JSX.Element => {
 
       <div className="text-end m-1">
         {message}
-        <br/>
+        <br />
         <button className="btn btn-primary" onClick={handleLogin}>
           Login
         </button>
       </div>
     </div>
   );
-};
+}
 
 export default Login;

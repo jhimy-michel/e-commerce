@@ -19,7 +19,7 @@ const initialState: ShoppingState = {
   ]
 };
 
-const ShoppingCart = (): JSX.Element => {
+function ShoppingCart(){
   const [products, setProducts] = useState<ShoppingState>(initialState);
 
   const handleIncrement = (prod: Products) => {
@@ -57,7 +57,13 @@ const ShoppingCart = (): JSX.Element => {
       <div className="row">
         {products.products.map((prod, index) => {
           return (
-            <Product key={index} prod={prod} onIncrement={handleIncrement} onDecrement={handleDecrement} onDelete={handleDeleteProduct}>
+            <Product
+              key={index}
+              prod={prod}
+              onIncrement={handleIncrement}
+              onDecrement={handleDecrement}
+              onDelete={handleDeleteProduct}
+            >
               <button className="btn btn-primary">Buy now</button>
             </Product>
           );
@@ -65,6 +71,6 @@ const ShoppingCart = (): JSX.Element => {
       </div>
     </div>
   );
-};
+}
 
 export default ShoppingCart;
