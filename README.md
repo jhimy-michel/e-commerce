@@ -1,4 +1,4 @@
-# e-commerce
+# e-commerce 🛒
 E-commerce project
 
 > Note: This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
