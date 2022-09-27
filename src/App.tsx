@@ -1,6 +1,4 @@
-import React from 'react'; /* 
-import { Route } from 'react-router';
-import {  BrowserRouter } from 'react-router-dom'; */
+import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import CustomerList from './CustomerList';
