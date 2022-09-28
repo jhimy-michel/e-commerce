@@ -51,7 +51,7 @@ The script folder contains two main scripts.
 1. `deploy.sh` deploys a new version of the application.
 2. `genBackendTypes.sh` generates the types based on the openapi.json downloaded from the [api service](https://github.com/jhimy-michel/e-commerce-api).
 
-> Important! before generating the types make sure that the api service is running.
+> Important! before generating the types make sure the api service is running.
 
 ## Disclaimer
 This project was based on an example explained on this video:

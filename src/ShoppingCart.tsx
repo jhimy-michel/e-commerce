@@ -19,7 +19,7 @@ const initialState: ShoppingState = {
   ]
 };
 
-function ShoppingCart(){
+function ShoppingCart() {
   const [products, setProducts] = useState<ShoppingState>(initialState);
 
   const handleIncrement = (prod: Products) => {
@@ -53,7 +53,7 @@ function ShoppingCart(){
 
   return (
     <div className="container-fluid">
-      <h4>Shopping Cart</h4>
+      <h4>Products</h4>
       <div className="row">
         {products.products.map((prod, index) => {
           return (

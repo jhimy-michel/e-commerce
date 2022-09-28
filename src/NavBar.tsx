@@ -1,5 +1,5 @@
-import React from "react";
-import logo from "./logo.svg";
+import React from 'react';
+import logo from './logo.svg';
 
 function NavBar(): JSX.Element {
   return (
@@ -7,7 +7,7 @@ function NavBar(): JSX.Element {
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark navbar-style">
         <div className="container-fluid">
           <a className="navbar-brand" href="/#">
-            E-commerce App
+            JM Online shop
           </a>
           <button
             className="navbar-toggler"
