@@ -28,21 +28,21 @@ Front End E-commerce project created with:
 1. Clone this repo
 2. Install all the dependencies (yarn install)
 3. Run in a terminal: `npm run start`
-### NPM scripts
+### Yarn scripts
 
 Start development server:
 ```bash
-npm run start
+yarn start
 ```
 
 Run the tests:
 ```bash
-npm run test
+yarn test
 ```
 
 Build the project:
 ```bash
-npm run build
+yarn build
 ```
 ## Scripts
 
