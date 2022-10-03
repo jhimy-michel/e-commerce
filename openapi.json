@@ -7,6 +7,570 @@
     "contact": {}
   },
   "paths": {
+    "/categories/count": {
+      "get": {
+        "x-controller-name": "CategoriesController",
+        "x-operation-name": "count",
+        "tags": [
+          "CategoriesController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Category model count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Category.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Category>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "CategoriesController.count"
+      }
+    },
+    "/categories/{id}": {
+      "put": {
+        "x-controller-name": "CategoriesController",
+        "x-operation-name": "replaceById",
+        "tags": [
+          "CategoriesController"
+        ],
+        "responses": {
+          "204": {
+            "description": "Category PUT success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Category"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "CategoriesController.replaceById"
+      },
+      "patch": {
+        "x-controller-name": "CategoriesController",
+        "x-operation-name": "updateById",
+        "tags": [
+          "CategoriesController"
+        ],
+        "responses": {
+          "204": {
+            "description": "Category PATCH success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CategoryPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "CategoriesController.updateById"
+      },
+      "get": {
+        "x-controller-name": "CategoriesController",
+        "x-operation-name": "findById",
+        "tags": [
+          "CategoriesController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Category model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoryWithRelations"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Category.Filter"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "CategoriesController.findById"
+      },
+      "delete": {
+        "x-controller-name": "CategoriesController",
+        "x-operation-name": "deleteById",
+        "tags": [
+          "CategoriesController"
+        ],
+        "responses": {
+          "204": {
+            "description": "Category DELETE success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "CategoriesController.deleteById"
+      }
+    },
+    "/categories": {
+      "post": {
+        "x-controller-name": "CategoriesController",
+        "x-operation-name": "create",
+        "tags": [
+          "CategoriesController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Category model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Category"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewCategory"
+              }
+            }
+          }
+        },
+        "operationId": "CategoriesController.create"
+      },
+      "patch": {
+        "x-controller-name": "CategoriesController",
+        "x-operation-name": "updateAll",
+        "tags": [
+          "CategoriesController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Category PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Category.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Category>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CategoryPartial"
+              }
+            }
+          }
+        },
+        "operationId": "CategoriesController.updateAll"
+      },
+      "get": {
+        "x-controller-name": "CategoriesController",
+        "x-operation-name": "find",
+        "tags": [
+          "CategoriesController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of Category model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CategoryWithRelations"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Category.Filter1"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "CategoriesController.find"
+      }
+    },
+    "/inventories/count": {
+      "get": {
+        "x-controller-name": "InventoryController",
+        "x-operation-name": "count",
+        "tags": [
+          "InventoryController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Inventory model count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Inventory.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Inventory>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "InventoryController.count"
+      }
+    },
+    "/inventories/{id}": {
+      "put": {
+        "x-controller-name": "InventoryController",
+        "x-operation-name": "replaceById",
+        "tags": [
+          "InventoryController"
+        ],
+        "responses": {
+          "204": {
+            "description": "Inventory PUT success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Inventory"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "InventoryController.replaceById"
+      },
+      "patch": {
+        "x-controller-name": "InventoryController",
+        "x-operation-name": "updateById",
+        "tags": [
+          "InventoryController"
+        ],
+        "responses": {
+          "204": {
+            "description": "Inventory PATCH success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InventoryPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "InventoryController.updateById"
+      },
+      "get": {
+        "x-controller-name": "InventoryController",
+        "x-operation-name": "findById",
+        "tags": [
+          "InventoryController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Inventory model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InventoryWithRelations"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Inventory.Filter"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "InventoryController.findById"
+      },
+      "delete": {
+        "x-controller-name": "InventoryController",
+        "x-operation-name": "deleteById",
+        "tags": [
+          "InventoryController"
+        ],
+        "responses": {
+          "204": {
+            "description": "Inventory DELETE success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "InventoryController.deleteById"
+      }
+    },
+    "/inventories": {
+      "post": {
+        "x-controller-name": "InventoryController",
+        "x-operation-name": "create",
+        "tags": [
+          "InventoryController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Inventory model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Inventory"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewInventory"
+              }
+            }
+          }
+        },
+        "operationId": "InventoryController.create"
+      },
+      "patch": {
+        "x-controller-name": "InventoryController",
+        "x-operation-name": "updateAll",
+        "tags": [
+          "InventoryController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Inventory PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Inventory.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Inventory>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InventoryPartial"
+              }
+            }
+          }
+        },
+        "operationId": "InventoryController.updateAll"
+      },
+      "get": {
+        "x-controller-name": "InventoryController",
+        "x-operation-name": "find",
+        "tags": [
+          "InventoryController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of Inventory model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InventoryWithRelations"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Inventory.Filter1"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "InventoryController.find"
+      }
+    },
     "/ping": {
       "get": {
         "x-controller-name": "PingController",
@@ -28,6 +592,570 @@
         },
         "operationId": "PingController.ping"
       }
+    },
+    "/products/count": {
+      "get": {
+        "x-controller-name": "ProductsController",
+        "x-operation-name": "count",
+        "tags": [
+          "ProductsController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Products model count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Products.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Products>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "ProductsController.count"
+      }
+    },
+    "/products/{id}": {
+      "put": {
+        "x-controller-name": "ProductsController",
+        "x-operation-name": "replaceById",
+        "tags": [
+          "ProductsController"
+        ],
+        "responses": {
+          "204": {
+            "description": "Products PUT success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Products"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "ProductsController.replaceById"
+      },
+      "patch": {
+        "x-controller-name": "ProductsController",
+        "x-operation-name": "updateById",
+        "tags": [
+          "ProductsController"
+        ],
+        "responses": {
+          "204": {
+            "description": "Products PATCH success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductsPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "ProductsController.updateById"
+      },
+      "get": {
+        "x-controller-name": "ProductsController",
+        "x-operation-name": "findById",
+        "tags": [
+          "ProductsController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Products model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductsWithRelations"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Products.Filter"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "ProductsController.findById"
+      },
+      "delete": {
+        "x-controller-name": "ProductsController",
+        "x-operation-name": "deleteById",
+        "tags": [
+          "ProductsController"
+        ],
+        "responses": {
+          "204": {
+            "description": "Products DELETE success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "ProductsController.deleteById"
+      }
+    },
+    "/products": {
+      "post": {
+        "x-controller-name": "ProductsController",
+        "x-operation-name": "create",
+        "tags": [
+          "ProductsController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Products model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Products"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewProducts"
+              }
+            }
+          }
+        },
+        "operationId": "ProductsController.create"
+      },
+      "patch": {
+        "x-controller-name": "ProductsController",
+        "x-operation-name": "updateAll",
+        "tags": [
+          "ProductsController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Products PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Products.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Products>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductsPartial"
+              }
+            }
+          }
+        },
+        "operationId": "ProductsController.updateAll"
+      },
+      "get": {
+        "x-controller-name": "ProductsController",
+        "x-operation-name": "find",
+        "tags": [
+          "ProductsController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of Products model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductsWithRelations"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Products.Filter1"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "ProductsController.find"
+      }
+    },
+    "/users/count": {
+      "get": {
+        "x-controller-name": "UsersController",
+        "x-operation-name": "count",
+        "tags": [
+          "UsersController"
+        ],
+        "responses": {
+          "200": {
+            "description": "User model count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "User.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<User>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "UsersController.count"
+      }
+    },
+    "/users/{id}": {
+      "put": {
+        "x-controller-name": "UsersController",
+        "x-operation-name": "replaceById",
+        "tags": [
+          "UsersController"
+        ],
+        "responses": {
+          "204": {
+            "description": "User PUT success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "UsersController.replaceById"
+      },
+      "patch": {
+        "x-controller-name": "UsersController",
+        "x-operation-name": "updateById",
+        "tags": [
+          "UsersController"
+        ],
+        "responses": {
+          "204": {
+            "description": "User PATCH success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "UsersController.updateById"
+      },
+      "get": {
+        "x-controller-name": "UsersController",
+        "x-operation-name": "findById",
+        "tags": [
+          "UsersController"
+        ],
+        "responses": {
+          "200": {
+            "description": "User model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserWithRelations"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User.Filter"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "UsersController.findById"
+      },
+      "delete": {
+        "x-controller-name": "UsersController",
+        "x-operation-name": "deleteById",
+        "tags": [
+          "UsersController"
+        ],
+        "responses": {
+          "204": {
+            "description": "User DELETE success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "UsersController.deleteById"
+      }
+    },
+    "/users": {
+      "post": {
+        "x-controller-name": "UsersController",
+        "x-operation-name": "create",
+        "tags": [
+          "UsersController"
+        ],
+        "responses": {
+          "200": {
+            "description": "User model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewUser"
+              }
+            }
+          }
+        },
+        "operationId": "UsersController.create"
+      },
+      "patch": {
+        "x-controller-name": "UsersController",
+        "x-operation-name": "updateAll",
+        "tags": [
+          "UsersController"
+        ],
+        "responses": {
+          "200": {
+            "description": "User PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "User.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<User>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPartial"
+              }
+            }
+          }
+        },
+        "operationId": "UsersController.updateAll"
+      },
+      "get": {
+        "x-controller-name": "UsersController",
+        "x-operation-name": "find",
+        "tags": [
+          "UsersController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of User model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserWithRelations"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User.Filter1"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "UsersController.find"
+      }
     }
   },
   "servers": [
@@ -37,6 +1165,358 @@
   ],
   "components": {
     "schemas": {
+      "Category": {
+        "title": "Category",
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "NewCategory": {
+        "title": "NewCategory",
+        "type": "object",
+        "description": "(tsType: Omit<Category, '_id'>, schemaOptions: { title: 'NewCategory', exclude: [ '_id' ] })",
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<Category, '_id'>"
+      },
+      "CategoryWithRelations": {
+        "title": "CategoryWithRelations",
+        "type": "object",
+        "description": "(tsType: CategoryWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "_id": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "CategoryWithRelations"
+      },
+      "CategoryPartial": {
+        "title": "CategoryPartial",
+        "type": "object",
+        "description": "(tsType: Partial<Category>, schemaOptions: { partial: true })",
+        "properties": {
+          "_id": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Partial<Category>"
+      },
+      "Inventory": {
+        "title": "Inventory",
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "NewInventory": {
+        "title": "NewInventory",
+        "type": "object",
+        "description": "(tsType: Omit<Inventory, '_id'>, schemaOptions: { title: 'NewInventory', exclude: [ '_id' ] })",
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<Inventory, '_id'>"
+      },
+      "InventoryWithRelations": {
+        "title": "InventoryWithRelations",
+        "type": "object",
+        "description": "(tsType: InventoryWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "_id": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "InventoryWithRelations"
+      },
+      "InventoryPartial": {
+        "title": "InventoryPartial",
+        "type": "object",
+        "description": "(tsType: Partial<Inventory>, schemaOptions: { partial: true })",
+        "properties": {
+          "_id": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Partial<Inventory>"
+      },
+      "Products": {
+        "title": "Products",
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "NewProducts": {
+        "title": "NewProducts",
+        "type": "object",
+        "description": "(tsType: Omit<Products, '_id'>, schemaOptions: { title: 'NewProducts', exclude: [ '_id' ] })",
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<Products, '_id'>"
+      },
+      "ProductsWithRelations": {
+        "title": "ProductsWithRelations",
+        "type": "object",
+        "description": "(tsType: ProductsWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "_id": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "ProductsWithRelations"
+      },
+      "ProductsPartial": {
+        "title": "ProductsPartial",
+        "type": "object",
+        "description": "(tsType: Partial<Products>, schemaOptions: { partial: true })",
+        "properties": {
+          "_id": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Partial<Products>"
+      },
+      "User": {
+        "title": "User",
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      },
+      "NewUser": {
+        "title": "NewUser",
+        "type": "object",
+        "description": "(tsType: Omit<User, '_id'>, schemaOptions: { title: 'NewUser', exclude: [ '_id' ] })",
+        "additionalProperties": true,
+        "x-typescript-type": "Omit<User, '_id'>"
+      },
+      "UserWithRelations": {
+        "title": "UserWithRelations",
+        "type": "object",
+        "description": "(tsType: UserWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "_id": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true,
+        "x-typescript-type": "UserWithRelations"
+      },
+      "UserPartial": {
+        "title": "UserPartial",
+        "type": "object",
+        "description": "(tsType: Partial<User>, schemaOptions: { partial: true })",
+        "properties": {
+          "_id": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true,
+        "x-typescript-type": "Partial<User>"
+      },
+      "loopback.Count": {
+        "type": "object",
+        "title": "loopback.Count",
+        "x-typescript-type": "@loopback/repository#Count",
+        "properties": {
+          "count": {
+            "type": "number"
+          }
+        }
+      },
+      "Category.Fields": {
+        "title": "Category.Fields",
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Category.Filter": {
+        "type": "object",
+        "title": "Category.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "fields": {
+            "$ref": "#/components/schemas/Category.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Category>"
+      },
+      "Category.Filter1": {
+        "type": "object",
+        "title": "Category.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "title": "Category.WhereFilter",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "$ref": "#/components/schemas/Category.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Category>"
+      },
+      "Inventory.Fields": {
+        "title": "Inventory.Fields",
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Inventory.Filter": {
+        "type": "object",
+        "title": "Inventory.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "fields": {
+            "$ref": "#/components/schemas/Inventory.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Inventory>"
+      },
+      "Inventory.Filter1": {
+        "type": "object",
+        "title": "Inventory.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "title": "Inventory.WhereFilter",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "$ref": "#/components/schemas/Inventory.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Inventory>"
+      },
       "PingResponse": {
         "type": "object",
         "title": "PingResponse",
@@ -60,6 +1540,184 @@
             "additionalProperties": true
           }
         }
+      },
+      "Products.Fields": {
+        "title": "Products.Fields",
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Products.Filter": {
+        "type": "object",
+        "title": "Products.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "fields": {
+            "$ref": "#/components/schemas/Products.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Products>"
+      },
+      "Products.Filter1": {
+        "type": "object",
+        "title": "Products.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "title": "Products.WhereFilter",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "$ref": "#/components/schemas/Products.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Products>"
+      },
+      "User.Fields": {
+        "title": "User.Fields",
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": true
+      },
+      "User.Filter": {
+        "type": "object",
+        "title": "User.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "fields": {
+            "$ref": "#/components/schemas/User.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<User>"
+      },
+      "User.Filter1": {
+        "type": "object",
+        "title": "User.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "title": "User.WhereFilter",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "$ref": "#/components/schemas/User.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<User>"
       }
     }
   }

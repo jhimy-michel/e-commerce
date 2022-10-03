@@ -14,4 +14,4 @@ rm -fR endpoints
 cd ..
 cd ..
 
-npx orval
+npx orval --config orval.config.ts
