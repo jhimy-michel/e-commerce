@@ -14,6 +14,7 @@ const App = (): JSX.Element => {
       {/* <div className="container-fluid"> */}
       <Routes>
         <Route path="/" element={<ProductsPage />} />
+        {/* <Route path="/login" element={<Login />} /> */}
         <Route path="/customers" element={<CustomerList />} />
         <Route path="/cart" element={<ShoppingCart />} />
       </Routes>

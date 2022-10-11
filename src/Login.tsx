@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Card } from 'react-bootstrap';
+import { CardBody, CardHeader } from 'reactstrap';
 
 function Login() {
   const [email, setEmail] = useState<string>('');
@@ -17,26 +19,26 @@ function Login() {
   return (
     <div className="col-lg-9">
       <h4 className="m-1 p-2 border-bottom">Login</h4>
-      <div className="form-group form-row">
-        <label className="col-lg-4">Email:</label>
-        <input type="text" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} />
+      <Card>
+        <CardHeader></CardHeader>
+        <CardBody>
+          <label className="col-lg-4">Email:</label>
+          <input type="text" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} />
 
-        <label className="col-lg-4">Password:</label>
-        <input
-          type="password"
-          className="form-control"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-
-      <div className="text-end m-1">
-        {message}
-        <br />
-        <button className="btn btn-primary" onClick={handleLogin}>
-          Login
-        </button>
-      </div>
+          <label className="col-lg-4">Password:</label>
+          <input
+            type="password"
+            className="form-control"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {message}
+          <br />
+          <button className="btn btn-primary" onClick={handleLogin}>
+            Login
+          </button>
+        </CardBody>
+      </Card>
     </div>
   );
 }
