@@ -5,12 +5,6 @@
  * API for e commerce App
  * OpenAPI spec version: 0.0.1
  */
-import axios from 'axios'
-import type {
-  AxiosRequestConfig,
-  AxiosResponse,
-  AxiosError
-} from 'axios'
 import {
   useQuery,
   useMutation
@@ -34,38 +28,41 @@ import type {
   InventoryControllerUpdateAllParams,
   InventoryControllerFindParams
 } from './ecommerceApi.schemas'
+import { customInstance } from '../mutator/custom-instance'
+import type { ErrorType } from '../mutator/custom-instance'
 
 
 
 export const inventoryControllerCount = (
-    params?: InventoryControllerCountParams, options?: AxiosRequestConfig
- ): Promise<AxiosResponse<LoopbackCount>> => {
-    return axios.get(
-      `/inventories/count`,{
-    ...options,
-        params: {...params, ...options?.params},}
-    );
-  }
-
+    params?: InventoryControllerCountParams,
+ signal?: AbortSignal
+) => {
+      return customInstance<LoopbackCount>(
+      {url: `/inventories/count`, method: 'get',
+        params, signal
+    },
+      );
+    }
+  
 
 export const getInventoryControllerCountQueryKey = (params?: InventoryControllerCountParams,) => [`/inventories/count`, ...(params ? [params]: [])];
 
     
 export type InventoryControllerCountQueryResult = NonNullable<Awaited<ReturnType<typeof inventoryControllerCount>>>
-export type InventoryControllerCountQueryError = AxiosError<unknown>
+export type InventoryControllerCountQueryError = ErrorType<unknown>
 
-export const useInventoryControllerCount = <TData = Awaited<ReturnType<typeof inventoryControllerCount>>, TError = AxiosError<unknown>>(
- params?: InventoryControllerCountParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof inventoryControllerCount>>, TError, TData>, axios?: AxiosRequestConfig}
+export const useInventoryControllerCount = <TData = Awaited<ReturnType<typeof inventoryControllerCount>>, TError = ErrorType<unknown>>(
+ params?: InventoryControllerCountParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof inventoryControllerCount>>, TError, TData>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
 
-  const {query: queryOptions, axios: axiosOptions} = options ?? {};
+  const {query: queryOptions} = options ?? {};
 
   const queryKey = queryOptions?.queryKey ?? getInventoryControllerCountQueryKey(params);
 
   
 
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof inventoryControllerCount>>> = ({ signal }) => inventoryControllerCount(params, { signal, ...axiosOptions });
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof inventoryControllerCount>>> = ({ signal }) => inventoryControllerCount(params, signal);
 
   const query = useQuery<Awaited<ReturnType<typeof inventoryControllerCount>>, TError, TData>(queryKey, queryFn, queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
 
@@ -76,25 +73,27 @@ export const useInventoryControllerCount = <TData = Awaited<ReturnType<typeof in
 
 export const inventoryControllerReplaceById = (
     id: string,
-    inventory: Inventory, options?: AxiosRequestConfig
- ): Promise<AxiosResponse<void>> => {
-    return axios.put(
-      `/inventories/${id}`,
-      inventory,options
-    );
-  }
-
+    inventory: Inventory,
+ ) => {
+      return customInstance<void>(
+      {url: `/inventories/${id}`, method: 'put',
+      headers: {'Content-Type': 'application/json', },
+      data: inventory
+    },
+      );
+    }
+  
 
 
     export type InventoryControllerReplaceByIdMutationResult = NonNullable<Awaited<ReturnType<typeof inventoryControllerReplaceById>>>
     export type InventoryControllerReplaceByIdMutationBody = Inventory
-    export type InventoryControllerReplaceByIdMutationError = AxiosError<unknown>
+    export type InventoryControllerReplaceByIdMutationError = ErrorType<unknown>
 
-    export const useInventoryControllerReplaceById = <TError = AxiosError<unknown>,
+    export const useInventoryControllerReplaceById = <TError = ErrorType<unknown>,
     
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof inventoryControllerReplaceById>>, TError,{id: string;data: Inventory}, TContext>, axios?: AxiosRequestConfig}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof inventoryControllerReplaceById>>, TError,{id: string;data: Inventory}, TContext>, }
 ) => {
-      const {mutation: mutationOptions, axios: axiosOptions} = options ?? {};
+      const {mutation: mutationOptions} = options ?? {};
 
       
 
@@ -102,32 +101,34 @@ export const inventoryControllerReplaceById = (
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof inventoryControllerReplaceById>>, {id: string;data: Inventory}> = (props) => {
           const {id,data} = props ?? {};
 
-          return  inventoryControllerReplaceById(id,data,axiosOptions)
+          return  inventoryControllerReplaceById(id,data,)
         }
 
       return useMutation<Awaited<ReturnType<typeof inventoryControllerReplaceById>>, TError, {id: string;data: Inventory}, TContext>(mutationFn, mutationOptions)
     }
     export const inventoryControllerUpdateById = (
     id: string,
-    inventoryPartial: InventoryPartial, options?: AxiosRequestConfig
- ): Promise<AxiosResponse<void>> => {
-    return axios.patch(
-      `/inventories/${id}`,
-      inventoryPartial,options
-    );
-  }
-
+    inventoryPartial: InventoryPartial,
+ ) => {
+      return customInstance<void>(
+      {url: `/inventories/${id}`, method: 'patch',
+      headers: {'Content-Type': 'application/json', },
+      data: inventoryPartial
+    },
+      );
+    }
+  
 
 
     export type InventoryControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof inventoryControllerUpdateById>>>
     export type InventoryControllerUpdateByIdMutationBody = InventoryPartial
-    export type InventoryControllerUpdateByIdMutationError = AxiosError<unknown>
+    export type InventoryControllerUpdateByIdMutationError = ErrorType<unknown>
 
-    export const useInventoryControllerUpdateById = <TError = AxiosError<unknown>,
+    export const useInventoryControllerUpdateById = <TError = ErrorType<unknown>,
     
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof inventoryControllerUpdateById>>, TError,{id: string;data: InventoryPartial}, TContext>, axios?: AxiosRequestConfig}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof inventoryControllerUpdateById>>, TError,{id: string;data: InventoryPartial}, TContext>, }
 ) => {
-      const {mutation: mutationOptions, axios: axiosOptions} = options ?? {};
+      const {mutation: mutationOptions} = options ?? {};
 
       
 
@@ -135,43 +136,44 @@ export const inventoryControllerReplaceById = (
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof inventoryControllerUpdateById>>, {id: string;data: InventoryPartial}> = (props) => {
           const {id,data} = props ?? {};
 
-          return  inventoryControllerUpdateById(id,data,axiosOptions)
+          return  inventoryControllerUpdateById(id,data,)
         }
 
       return useMutation<Awaited<ReturnType<typeof inventoryControllerUpdateById>>, TError, {id: string;data: InventoryPartial}, TContext>(mutationFn, mutationOptions)
     }
     export const inventoryControllerFindById = (
     id: string,
-    params?: InventoryControllerFindByIdParams, options?: AxiosRequestConfig
- ): Promise<AxiosResponse<InventoryWithRelations>> => {
-    return axios.get(
-      `/inventories/${id}`,{
-    ...options,
-        params: {...params, ...options?.params},}
-    );
-  }
-
+    params?: InventoryControllerFindByIdParams,
+ signal?: AbortSignal
+) => {
+      return customInstance<InventoryWithRelations>(
+      {url: `/inventories/${id}`, method: 'get',
+        params, signal
+    },
+      );
+    }
+  
 
 export const getInventoryControllerFindByIdQueryKey = (id: string,
     params?: InventoryControllerFindByIdParams,) => [`/inventories/${id}`, ...(params ? [params]: [])];
 
     
 export type InventoryControllerFindByIdQueryResult = NonNullable<Awaited<ReturnType<typeof inventoryControllerFindById>>>
-export type InventoryControllerFindByIdQueryError = AxiosError<unknown>
+export type InventoryControllerFindByIdQueryError = ErrorType<unknown>
 
-export const useInventoryControllerFindById = <TData = Awaited<ReturnType<typeof inventoryControllerFindById>>, TError = AxiosError<unknown>>(
+export const useInventoryControllerFindById = <TData = Awaited<ReturnType<typeof inventoryControllerFindById>>, TError = ErrorType<unknown>>(
  id: string,
-    params?: InventoryControllerFindByIdParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof inventoryControllerFindById>>, TError, TData>, axios?: AxiosRequestConfig}
+    params?: InventoryControllerFindByIdParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof inventoryControllerFindById>>, TError, TData>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
 
-  const {query: queryOptions, axios: axiosOptions} = options ?? {};
+  const {query: queryOptions} = options ?? {};
 
   const queryKey = queryOptions?.queryKey ?? getInventoryControllerFindByIdQueryKey(id,params);
 
   
 
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof inventoryControllerFindById>>> = ({ signal }) => inventoryControllerFindById(id,params, { signal, ...axiosOptions });
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof inventoryControllerFindById>>> = ({ signal }) => inventoryControllerFindById(id,params, signal);
 
   const query = useQuery<Awaited<ReturnType<typeof inventoryControllerFindById>>, TError, TData>(queryKey, queryFn, {enabled: !!(id), ...queryOptions}) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
 
@@ -181,24 +183,25 @@ export const useInventoryControllerFindById = <TData = Awaited<ReturnType<typeof
 }
 
 export const inventoryControllerDeleteById = (
-    id: string, options?: AxiosRequestConfig
- ): Promise<AxiosResponse<void>> => {
-    return axios.delete(
-      `/inventories/${id}`,options
-    );
-  }
-
+    id: string,
+ ) => {
+      return customInstance<void>(
+      {url: `/inventories/${id}`, method: 'delete'
+    },
+      );
+    }
+  
 
 
     export type InventoryControllerDeleteByIdMutationResult = NonNullable<Awaited<ReturnType<typeof inventoryControllerDeleteById>>>
     
-    export type InventoryControllerDeleteByIdMutationError = AxiosError<unknown>
+    export type InventoryControllerDeleteByIdMutationError = ErrorType<unknown>
 
-    export const useInventoryControllerDeleteById = <TError = AxiosError<unknown>,
+    export const useInventoryControllerDeleteById = <TError = ErrorType<unknown>,
     
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof inventoryControllerDeleteById>>, TError,{id: string}, TContext>, axios?: AxiosRequestConfig}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof inventoryControllerDeleteById>>, TError,{id: string}, TContext>, }
 ) => {
-      const {mutation: mutationOptions, axios: axiosOptions} = options ?? {};
+      const {mutation: mutationOptions} = options ?? {};
 
       
 
@@ -206,31 +209,33 @@ export const inventoryControllerDeleteById = (
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof inventoryControllerDeleteById>>, {id: string}> = (props) => {
           const {id} = props ?? {};
 
-          return  inventoryControllerDeleteById(id,axiosOptions)
+          return  inventoryControllerDeleteById(id,)
         }
 
       return useMutation<Awaited<ReturnType<typeof inventoryControllerDeleteById>>, TError, {id: string}, TContext>(mutationFn, mutationOptions)
     }
     export const inventoryControllerCreate = (
-    newInventory: NewInventory, options?: AxiosRequestConfig
- ): Promise<AxiosResponse<Inventory>> => {
-    return axios.post(
-      `/inventories`,
-      newInventory,options
-    );
-  }
-
+    newInventory: NewInventory,
+ ) => {
+      return customInstance<Inventory>(
+      {url: `/inventories`, method: 'post',
+      headers: {'Content-Type': 'application/json', },
+      data: newInventory
+    },
+      );
+    }
+  
 
 
     export type InventoryControllerCreateMutationResult = NonNullable<Awaited<ReturnType<typeof inventoryControllerCreate>>>
     export type InventoryControllerCreateMutationBody = NewInventory
-    export type InventoryControllerCreateMutationError = AxiosError<unknown>
+    export type InventoryControllerCreateMutationError = ErrorType<unknown>
 
-    export const useInventoryControllerCreate = <TError = AxiosError<unknown>,
+    export const useInventoryControllerCreate = <TError = ErrorType<unknown>,
     
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof inventoryControllerCreate>>, TError,{data: NewInventory}, TContext>, axios?: AxiosRequestConfig}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof inventoryControllerCreate>>, TError,{data: NewInventory}, TContext>, }
 ) => {
-      const {mutation: mutationOptions, axios: axiosOptions} = options ?? {};
+      const {mutation: mutationOptions} = options ?? {};
 
       
 
@@ -238,34 +243,35 @@ export const inventoryControllerDeleteById = (
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof inventoryControllerCreate>>, {data: NewInventory}> = (props) => {
           const {data} = props ?? {};
 
-          return  inventoryControllerCreate(data,axiosOptions)
+          return  inventoryControllerCreate(data,)
         }
 
       return useMutation<Awaited<ReturnType<typeof inventoryControllerCreate>>, TError, {data: NewInventory}, TContext>(mutationFn, mutationOptions)
     }
     export const inventoryControllerUpdateAll = (
     inventoryPartial: InventoryPartial,
-    params?: InventoryControllerUpdateAllParams, options?: AxiosRequestConfig
- ): Promise<AxiosResponse<LoopbackCount>> => {
-    return axios.patch(
-      `/inventories`,
-      inventoryPartial,{
-    ...options,
-        params: {...params, ...options?.params},}
-    );
-  }
-
+    params?: InventoryControllerUpdateAllParams,
+ ) => {
+      return customInstance<LoopbackCount>(
+      {url: `/inventories`, method: 'patch',
+      headers: {'Content-Type': 'application/json', },
+      data: inventoryPartial,
+        params
+    },
+      );
+    }
+  
 
 
     export type InventoryControllerUpdateAllMutationResult = NonNullable<Awaited<ReturnType<typeof inventoryControllerUpdateAll>>>
     export type InventoryControllerUpdateAllMutationBody = InventoryPartial
-    export type InventoryControllerUpdateAllMutationError = AxiosError<unknown>
+    export type InventoryControllerUpdateAllMutationError = ErrorType<unknown>
 
-    export const useInventoryControllerUpdateAll = <TError = AxiosError<unknown>,
+    export const useInventoryControllerUpdateAll = <TError = ErrorType<unknown>,
     
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof inventoryControllerUpdateAll>>, TError,{data: InventoryPartial;params?: InventoryControllerUpdateAllParams}, TContext>, axios?: AxiosRequestConfig}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof inventoryControllerUpdateAll>>, TError,{data: InventoryPartial;params?: InventoryControllerUpdateAllParams}, TContext>, }
 ) => {
-      const {mutation: mutationOptions, axios: axiosOptions} = options ?? {};
+      const {mutation: mutationOptions} = options ?? {};
 
       
 
@@ -273,40 +279,41 @@ export const inventoryControllerDeleteById = (
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof inventoryControllerUpdateAll>>, {data: InventoryPartial;params?: InventoryControllerUpdateAllParams}> = (props) => {
           const {data,params} = props ?? {};
 
-          return  inventoryControllerUpdateAll(data,params,axiosOptions)
+          return  inventoryControllerUpdateAll(data,params,)
         }
 
       return useMutation<Awaited<ReturnType<typeof inventoryControllerUpdateAll>>, TError, {data: InventoryPartial;params?: InventoryControllerUpdateAllParams}, TContext>(mutationFn, mutationOptions)
     }
     export const inventoryControllerFind = (
-    params?: InventoryControllerFindParams, options?: AxiosRequestConfig
- ): Promise<AxiosResponse<InventoryWithRelations[]>> => {
-    return axios.get(
-      `/inventories`,{
-    ...options,
-        params: {...params, ...options?.params},}
-    );
-  }
-
+    params?: InventoryControllerFindParams,
+ signal?: AbortSignal
+) => {
+      return customInstance<InventoryWithRelations[]>(
+      {url: `/inventories`, method: 'get',
+        params, signal
+    },
+      );
+    }
+  
 
 export const getInventoryControllerFindQueryKey = (params?: InventoryControllerFindParams,) => [`/inventories`, ...(params ? [params]: [])];
 
     
 export type InventoryControllerFindQueryResult = NonNullable<Awaited<ReturnType<typeof inventoryControllerFind>>>
-export type InventoryControllerFindQueryError = AxiosError<unknown>
+export type InventoryControllerFindQueryError = ErrorType<unknown>
 
-export const useInventoryControllerFind = <TData = Awaited<ReturnType<typeof inventoryControllerFind>>, TError = AxiosError<unknown>>(
- params?: InventoryControllerFindParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof inventoryControllerFind>>, TError, TData>, axios?: AxiosRequestConfig}
+export const useInventoryControllerFind = <TData = Awaited<ReturnType<typeof inventoryControllerFind>>, TError = ErrorType<unknown>>(
+ params?: InventoryControllerFindParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof inventoryControllerFind>>, TError, TData>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
 
-  const {query: queryOptions, axios: axiosOptions} = options ?? {};
+  const {query: queryOptions} = options ?? {};
 
   const queryKey = queryOptions?.queryKey ?? getInventoryControllerFindQueryKey(params);
 
   
 
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof inventoryControllerFind>>> = ({ signal }) => inventoryControllerFind(params, { signal, ...axiosOptions });
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof inventoryControllerFind>>> = ({ signal }) => inventoryControllerFind(params, signal);
 
   const query = useQuery<Awaited<ReturnType<typeof inventoryControllerFind>>, TError, TData>(queryKey, queryFn, queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
 

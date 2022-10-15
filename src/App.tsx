@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ProductsPage from './components/products/ProductsPage';
 
 import CustomerList from './CustomerList';
-import Login from './Login';
+import Login from './components/login/Login';
 import NavBar from './NavBar';
 import ShoppingCart from './ShoppingCart';
 
@@ -14,7 +14,7 @@ const App = (): JSX.Element => {
       {/* <div className="container-fluid"> */}
       <Routes>
         <Route path="/" element={<ProductsPage />} />
-        {/* <Route path="/login" element={<Login />} /> */}
+        <Route path="/profile" element={<Login />} />
         <Route path="/customers" element={<CustomerList />} />
         <Route path="/cart" element={<ShoppingCart />} />
       </Routes>

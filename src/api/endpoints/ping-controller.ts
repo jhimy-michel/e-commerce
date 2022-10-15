@@ -5,12 +5,6 @@
  * API for e commerce App
  * OpenAPI spec version: 0.0.1
  */
-import axios from 'axios'
-import type {
-  AxiosRequestConfig,
-  AxiosResponse,
-  AxiosError
-} from 'axios'
 import {
   useQuery
 } from '@tanstack/react-query'
@@ -23,36 +17,40 @@ import type {
 import type {
   PingResponse
 } from './ecommerceApi.schemas'
+import { customInstance } from '../mutator/custom-instance'
+import type { ErrorType } from '../mutator/custom-instance'
 
 
 
 export const pingControllerPing = (
-     options?: AxiosRequestConfig
- ): Promise<AxiosResponse<PingResponse>> => {
-    return axios.get(
-      `/ping`,options
-    );
-  }
-
+    
+ signal?: AbortSignal
+) => {
+      return customInstance<PingResponse>(
+      {url: `/ping`, method: 'get', signal
+    },
+      );
+    }
+  
 
 export const getPingControllerPingQueryKey = () => [`/ping`];
 
     
 export type PingControllerPingQueryResult = NonNullable<Awaited<ReturnType<typeof pingControllerPing>>>
-export type PingControllerPingQueryError = AxiosError<unknown>
+export type PingControllerPingQueryError = ErrorType<unknown>
 
-export const usePingControllerPing = <TData = Awaited<ReturnType<typeof pingControllerPing>>, TError = AxiosError<unknown>>(
-  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof pingControllerPing>>, TError, TData>, axios?: AxiosRequestConfig}
+export const usePingControllerPing = <TData = Awaited<ReturnType<typeof pingControllerPing>>, TError = ErrorType<unknown>>(
+  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof pingControllerPing>>, TError, TData>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
 
-  const {query: queryOptions, axios: axiosOptions} = options ?? {};
+  const {query: queryOptions} = options ?? {};
 
   const queryKey = queryOptions?.queryKey ?? getPingControllerPingQueryKey();
 
   
 
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof pingControllerPing>>> = ({ signal }) => pingControllerPing({ signal, ...axiosOptions });
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof pingControllerPing>>> = ({ signal }) => pingControllerPing(signal);
 
   const query = useQuery<Awaited<ReturnType<typeof pingControllerPing>>, TError, TData>(queryKey, queryFn, queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
 

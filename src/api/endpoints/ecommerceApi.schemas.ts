@@ -5,13 +5,13 @@
  * API for e commerce App
  * OpenAPI spec version: 0.0.1
  */
-export type UsersControllerFindParams = { filter?: UserFilter1 };
+export type UsersControllerListUsersParams = { filter?: UserFilter1 };
 
 export type UsersControllerUpdateAllParams = { where?: { [key: string]: any } };
 
 export type UsersControllerFindByIdParams = { filter?: UserFilter };
 
-export type UsersControllerCountParams = { where?: { [key: string]: any } };
+export type UsersControllerCountUsersParams = { where?: { [key: string]: any } };
 
 export type ProductsControllerFindParams = { filter?: ProductsFilter1 };
 
@@ -37,8 +37,19 @@ export type CategoriesControllerFindByIdParams = { filter?: CategoryFilter };
 
 export type CategoriesControllerCountParams = { where?: { [key: string]: any } };
 
+export type AuthenticationControllerLoginBody = {
+  email?: string;
+  password?: string;
+};
+
 export type UserFilter1FieldsOneOf = {
   _id?: boolean;
+  email?: boolean;
+  password?: boolean;
+  firstName?: boolean;
+  lastName?: boolean;
+  createdOn?: boolean;
+  lastLoginDate?: boolean;
   [key: string]: any;
  };
 
@@ -59,6 +70,12 @@ export interface UserFilter1 {
 
 export type UserFilterFieldsOneOf = {
   _id?: boolean;
+  email?: boolean;
+  password?: boolean;
+  firstName?: boolean;
+  lastName?: boolean;
+  createdOn?: boolean;
+  lastLoginDate?: boolean;
   [key: string]: any;
  };
 
@@ -137,6 +154,15 @@ export interface PingResponse {
   headers?: PingResponseHeaders;
 }
 
+export interface InventoryFilter1 {
+  offset?: number;
+  limit?: number;
+  skip?: number;
+  order?: InventoryFilter1Order;
+  where?: InventoryFilter1Where;
+  fields?: InventoryFilter1Fields;
+}
+
 export type InventoryFilter1FieldsOneOfTwoItem = typeof InventoryFilter1FieldsOneOfTwoItem[keyof typeof InventoryFilter1FieldsOneOfTwoItem];
 
 
@@ -154,15 +180,6 @@ export type InventoryFilter1Fields = InventoryFilter1FieldsOneOf | InventoryFilt
 export type InventoryFilter1Where = { [key: string]: any };
 
 export type InventoryFilter1Order = string | string[];
-
-export interface InventoryFilter1 {
-  offset?: number;
-  limit?: number;
-  skip?: number;
-  order?: InventoryFilter1Order;
-  where?: InventoryFilter1Where;
-  fields?: InventoryFilter1Fields;
-}
 
 export type InventoryFilterFieldsOneOfTwoItem = typeof InventoryFilterFieldsOneOfTwoItem[keyof typeof InventoryFilterFieldsOneOfTwoItem];
 
@@ -243,11 +260,31 @@ export interface LoopbackCount {
   count?: number;
 }
 
+export type LoginFailureError = {
+  statusCode?: number;
+  name?: string;
+  message?: string;
+};
+
+export interface LoginFailure {
+  error?: LoginFailureError;
+}
+
+export interface LoginSuccess {
+  token?: string;
+}
+
 /**
  * (tsType: Partial<User>, schemaOptions: { partial: true })
  */
 export interface UserPartial {
   _id?: string;
+  email?: string;
+  password?: string;
+  firstName?: string;
+  lastName?: string;
+  createdOn?: string;
+  lastLoginDate?: string;
   [key: string]: any;
  }
 
@@ -256,16 +293,34 @@ export interface UserPartial {
  */
 export interface UserWithRelations {
   _id?: string;
+  email?: string;
+  password?: string;
+  firstName?: string;
+  lastName?: string;
+  createdOn?: string;
+  lastLoginDate?: string;
   [key: string]: any;
  }
 
 /**
- * (tsType: Omit<User, '_id'>, schemaOptions: { title: 'NewUser', exclude: [ '_id' ] })
+ * (tsType: Omit<User, '_id' | 'createdOn' | 'lastLoginDate'>, schemaOptions: { title: 'NewUser', exclude: [ '_id', 'createdOn', 'lastLoginDate' ] })
  */
-export interface NewUser { [key: string]: any }
+export interface NewUser {
+  email?: string;
+  password?: string;
+  firstName?: string;
+  lastName?: string;
+  [key: string]: any;
+ }
 
 export interface User {
   _id?: string;
+  email?: string;
+  password?: string;
+  firstName?: string;
+  lastName?: string;
+  createdOn?: string;
+  lastLoginDate?: string;
   [key: string]: any;
  }
 
