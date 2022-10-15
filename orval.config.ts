@@ -7,10 +7,10 @@ export default defineConfig({
       target: 'src/api/endpoints/ecommerceApi.ts',
       client: 'react-query',
       override: {
-        /* mutator: {
-          path: "./src/api/mutator/custom-instance.ts",
-          name: "customInstance"
-        }, */
+        mutator: {
+          path: './src/api/mutator/custom-instance.ts',
+          name: 'customInstance'
+        },
         query: {
           useQuery: true,
           useInfinite: false,
