@@ -97,10 +97,26 @@ export type ProductsFilter1FieldsOneOfTwoItem = typeof ProductsFilter1FieldsOneO
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const ProductsFilter1FieldsOneOfTwoItem = {
   _id: '_id',
+  name: 'name',
+  description: 'description',
+  price: 'price',
+  amountAvailableInStock: 'amountAvailableInStock',
+  discountId: 'discountId',
+  categoryId: 'categoryId',
+  createdOn: 'createdOn',
+  updatedOn: 'updatedOn',
 } as const;
 
 export type ProductsFilter1FieldsOneOf = {
   _id?: boolean;
+  name?: boolean;
+  description?: boolean;
+  price?: boolean;
+  amountAvailableInStock?: boolean;
+  discountId?: boolean;
+  categoryId?: boolean;
+  createdOn?: boolean;
+  updatedOn?: boolean;
 };
 
 export type ProductsFilter1Fields = ProductsFilter1FieldsOneOf | ProductsFilter1FieldsOneOfTwoItem[];
@@ -124,10 +140,26 @@ export type ProductsFilterFieldsOneOfTwoItem = typeof ProductsFilterFieldsOneOfT
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const ProductsFilterFieldsOneOfTwoItem = {
   _id: '_id',
+  name: 'name',
+  description: 'description',
+  price: 'price',
+  amountAvailableInStock: 'amountAvailableInStock',
+  discountId: 'discountId',
+  categoryId: 'categoryId',
+  createdOn: 'createdOn',
+  updatedOn: 'updatedOn',
 } as const;
 
 export type ProductsFilterFieldsOneOf = {
   _id?: boolean;
+  name?: boolean;
+  description?: boolean;
+  price?: boolean;
+  amountAvailableInStock?: boolean;
+  discountId?: boolean;
+  categoryId?: boolean;
+  createdOn?: boolean;
+  updatedOn?: boolean;
 };
 
 export type ProductsFilterFields = ProductsFilterFieldsOneOf | ProductsFilterFieldsOneOfTwoItem[];
@@ -169,10 +201,12 @@ export type InventoryFilter1FieldsOneOfTwoItem = typeof InventoryFilter1FieldsOn
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const InventoryFilter1FieldsOneOfTwoItem = {
   _id: '_id',
+  productId: 'productId',
 } as const;
 
 export type InventoryFilter1FieldsOneOf = {
   _id?: boolean;
+  productId?: boolean;
 };
 
 export type InventoryFilter1Fields = InventoryFilter1FieldsOneOf | InventoryFilter1FieldsOneOfTwoItem[];
@@ -187,10 +221,12 @@ export type InventoryFilterFieldsOneOfTwoItem = typeof InventoryFilterFieldsOneO
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const InventoryFilterFieldsOneOfTwoItem = {
   _id: '_id',
+  productId: 'productId',
 } as const;
 
 export type InventoryFilterFieldsOneOf = {
   _id?: boolean;
+  productId?: boolean;
 };
 
 export type InventoryFilterFields = InventoryFilterFieldsOneOf | InventoryFilterFieldsOneOfTwoItem[];
@@ -211,10 +247,16 @@ export type CategoryFilter1FieldsOneOfTwoItem = typeof CategoryFilter1FieldsOneO
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const CategoryFilter1FieldsOneOfTwoItem = {
   _id: '_id',
+  name: 'name',
+  createdOn: 'createdOn',
+  updatedOn: 'updatedOn',
 } as const;
 
 export type CategoryFilter1FieldsOneOf = {
   _id?: boolean;
+  name?: boolean;
+  createdOn?: boolean;
+  updatedOn?: boolean;
 };
 
 export type CategoryFilter1Fields = CategoryFilter1FieldsOneOf | CategoryFilter1FieldsOneOfTwoItem[];
@@ -238,10 +280,16 @@ export type CategoryFilterFieldsOneOfTwoItem = typeof CategoryFilterFieldsOneOfT
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const CategoryFilterFieldsOneOfTwoItem = {
   _id: '_id',
+  name: 'name',
+  createdOn: 'createdOn',
+  updatedOn: 'updatedOn',
 } as const;
 
 export type CategoryFilterFieldsOneOf = {
   _id?: boolean;
+  name?: boolean;
+  createdOn?: boolean;
+  updatedOn?: boolean;
 };
 
 export type CategoryFilterFields = CategoryFilterFieldsOneOf | CategoryFilterFieldsOneOfTwoItem[];
@@ -329,6 +377,14 @@ export interface User {
  */
 export interface ProductsPartial {
   _id?: string;
+  name?: string;
+  description?: string;
+  price?: number;
+  amountAvailableInStock?: number;
+  discountId?: string;
+  categoryId?: string;
+  createdOn?: string;
+  updatedOn?: string;
 }
 
 /**
@@ -336,15 +392,40 @@ export interface ProductsPartial {
  */
 export interface ProductsWithRelations {
   _id?: string;
+  name: string;
+  description: string;
+  price: number;
+  amountAvailableInStock: number;
+  discountId?: string;
+  categoryId: string;
+  createdOn?: string;
+  updatedOn?: string;
 }
 
 /**
  * (tsType: Omit<Products, '_id'>, schemaOptions: { title: 'NewProducts', exclude: [ '_id' ] })
  */
-export interface NewProducts { [key: string]: any }
+export interface NewProducts {
+  name: string;
+  description: string;
+  price: number;
+  amountAvailableInStock: number;
+  discountId?: string;
+  categoryId: string;
+  createdOn?: string;
+  updatedOn?: string;
+}
 
 export interface Products {
   _id?: string;
+  name: string;
+  description: string;
+  price: number;
+  amountAvailableInStock: number;
+  discountId?: string;
+  categoryId: string;
+  createdOn?: string;
+  updatedOn?: string;
 }
 
 /**
@@ -352,6 +433,7 @@ export interface Products {
  */
 export interface InventoryPartial {
   _id?: string;
+  productId?: string;
 }
 
 /**
@@ -359,15 +441,19 @@ export interface InventoryPartial {
  */
 export interface InventoryWithRelations {
   _id?: string;
+  productId: string;
 }
 
 /**
  * (tsType: Omit<Inventory, '_id'>, schemaOptions: { title: 'NewInventory', exclude: [ '_id' ] })
  */
-export interface NewInventory { [key: string]: any }
+export interface NewInventory {
+  productId: string;
+}
 
 export interface Inventory {
   _id?: string;
+  productId: string;
 }
 
 /**
@@ -375,6 +461,9 @@ export interface Inventory {
  */
 export interface CategoryPartial {
   _id?: string;
+  name?: string;
+  createdOn?: string;
+  updatedOn?: string;
 }
 
 /**
@@ -382,14 +471,24 @@ export interface CategoryPartial {
  */
 export interface CategoryWithRelations {
   _id?: string;
+  name: string;
+  createdOn?: string;
+  updatedOn?: string;
 }
 
 /**
  * (tsType: Omit<Category, '_id'>, schemaOptions: { title: 'NewCategory', exclude: [ '_id' ] })
  */
-export interface NewCategory { [key: string]: any }
+export interface NewCategory {
+  name: string;
+  createdOn?: string;
+  updatedOn?: string;
+}
 
 export interface Category {
   _id?: string;
+  name: string;
+  createdOn?: string;
+  updatedOn?: string;
 }
 
