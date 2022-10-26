@@ -1,9 +1,10 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import Product from '../../Product';
-import ShoppingCart from '../../ShoppingCart';
 
-const ProductsPage = () => {
+import ShoppingCart from '../../ShoppingCart';
+import Category from '../categories/Category';
+
+function ProductsPage() {
   return (
     <>
       <Container fluid>
@@ -13,7 +14,9 @@ const ProductsPage = () => {
           </Col>
         </Row>
         <Row>
-          <Col xs="2">Categories</Col>
+          <Col xs="2">
+            <Category />
+          </Col>
           <Col xs="8">
             List of products
             <ShoppingCart />
@@ -22,6 +25,6 @@ const ProductsPage = () => {
       </Container>
     </>
   );
-};
+}
 
 export default ProductsPage;

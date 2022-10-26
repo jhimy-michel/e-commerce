@@ -11,14 +11,12 @@ const App = (): JSX.Element => {
   return (
     <BrowserRouter>
       <NavBar />
-      {/* <div className="container-fluid"> */}
       <Routes>
         <Route path="/" element={<ProductsPage />} />
         <Route path="/profile" element={<Login />} />
         <Route path="/customers" element={<CustomerList />} />
         <Route path="/cart" element={<ShoppingCart />} />
       </Routes>
-      {/* </div> */}
     </BrowserRouter>
   );
 };

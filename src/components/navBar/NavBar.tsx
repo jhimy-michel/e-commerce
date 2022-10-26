@@ -1,4 +1,6 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { NavItem } from 'reactstrap';
 import Profile from '../profile/Profile';
 
 function NavBar() {
@@ -20,18 +22,15 @@ function NavBar() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/">
-                Home
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/cart">
-                Shopping Cart
-              </a>
-            </li>
-          </ul>
+          <NavItem>
+            <NavLink to="/">Home</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink to="/cart">Shopping Cart</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink to="#">Test</NavLink>
+          </NavItem>
         </div>
         <a className="navbar-brand">
           <Profile />
