@@ -13,6 +13,14 @@ export type UsersControllerFindByIdParams = { filter?: UserFilter };
 
 export type UsersControllerCountUsersParams = { where?: { [key: string]: any } };
 
+export type ShoppingCartControllerFindParams = { filter?: ShoppingCartFilter1 };
+
+export type ShoppingCartControllerUpdateAllParams = { where?: { [key: string]: any } };
+
+export type ShoppingCartControllerFindByIdParams = { filter?: ShoppingCartFilter };
+
+export type ShoppingCartControllerCountParams = { where?: { [key: string]: any } };
+
 export type ProductsControllerFindParams = { filter?: ProductsFilter1 };
 
 export type ProductsControllerUpdateAllParams = { where?: { [key: string]: any } };
@@ -20,6 +28,14 @@ export type ProductsControllerUpdateAllParams = { where?: { [key: string]: any }
 export type ProductsControllerFindByIdParams = { filter?: ProductsFilter };
 
 export type ProductsControllerCountParams = { where?: { [key: string]: any } };
+
+export type PaymentsControllerFindParams = { filter?: PaymentFilter1 };
+
+export type PaymentsControllerUpdateAllParams = { where?: { [key: string]: any } };
+
+export type PaymentsControllerFindByIdParams = { filter?: PaymentFilter };
+
+export type PaymentsControllerCountParams = { where?: { [key: string]: any } };
 
 export type InventoryControllerFindParams = { filter?: InventoryFilter1 };
 
@@ -89,6 +105,65 @@ export interface UserFilter {
   skip?: number;
   order?: UserFilterOrder;
   fields?: UserFilterFields;
+}
+
+export type ShoppingCartFilter1FieldsOneOfTwoItem = typeof ShoppingCartFilter1FieldsOneOfTwoItem[keyof typeof ShoppingCartFilter1FieldsOneOfTwoItem];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const ShoppingCartFilter1FieldsOneOfTwoItem = {
+  _id: '_id',
+  active: 'active',
+  expireOn: 'expireOn',
+} as const;
+
+export type ShoppingCartFilter1FieldsOneOf = {
+  _id?: boolean;
+  active?: boolean;
+  expireOn?: boolean;
+};
+
+export type ShoppingCartFilter1Fields = ShoppingCartFilter1FieldsOneOf | ShoppingCartFilter1FieldsOneOfTwoItem[];
+
+export type ShoppingCartFilter1Where = { [key: string]: any };
+
+export type ShoppingCartFilter1Order = string | string[];
+
+export interface ShoppingCartFilter1 {
+  offset?: number;
+  limit?: number;
+  skip?: number;
+  order?: ShoppingCartFilter1Order;
+  where?: ShoppingCartFilter1Where;
+  fields?: ShoppingCartFilter1Fields;
+}
+
+export type ShoppingCartFilterFieldsOneOfTwoItem = typeof ShoppingCartFilterFieldsOneOfTwoItem[keyof typeof ShoppingCartFilterFieldsOneOfTwoItem];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const ShoppingCartFilterFieldsOneOfTwoItem = {
+  _id: '_id',
+  active: 'active',
+  expireOn: 'expireOn',
+} as const;
+
+export type ShoppingCartFilterFieldsOneOf = {
+  _id?: boolean;
+  active?: boolean;
+  expireOn?: boolean;
+};
+
+export type ShoppingCartFilterFields = ShoppingCartFilterFieldsOneOf | ShoppingCartFilterFieldsOneOfTwoItem[];
+
+export type ShoppingCartFilterOrder = string | string[];
+
+export interface ShoppingCartFilter {
+  offset?: number;
+  limit?: number;
+  skip?: number;
+  order?: ShoppingCartFilterOrder;
+  fields?: ShoppingCartFilterFields;
 }
 
 export type ProductsFilter1FieldsOneOfTwoItem = typeof ProductsFilter1FieldsOneOfTwoItem[keyof typeof ProductsFilter1FieldsOneOfTwoItem];
@@ -186,13 +261,67 @@ export interface PingResponse {
   headers?: PingResponseHeaders;
 }
 
-export interface InventoryFilter1 {
+export type PaymentFilter1FieldsOneOfTwoItem = typeof PaymentFilter1FieldsOneOfTwoItem[keyof typeof PaymentFilter1FieldsOneOfTwoItem];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PaymentFilter1FieldsOneOfTwoItem = {
+  _id: '_id',
+  amount: 'amount',
+  state: 'state',
+  timeStamp: 'timeStamp',
+} as const;
+
+export type PaymentFilter1FieldsOneOf = {
+  _id?: boolean;
+  amount?: boolean;
+  state?: boolean;
+  timeStamp?: boolean;
+};
+
+export type PaymentFilter1Fields = PaymentFilter1FieldsOneOf | PaymentFilter1FieldsOneOfTwoItem[];
+
+export type PaymentFilter1Where = { [key: string]: any };
+
+export type PaymentFilter1Order = string | string[];
+
+export interface PaymentFilter1 {
   offset?: number;
   limit?: number;
   skip?: number;
-  order?: InventoryFilter1Order;
-  where?: InventoryFilter1Where;
-  fields?: InventoryFilter1Fields;
+  order?: PaymentFilter1Order;
+  where?: PaymentFilter1Where;
+  fields?: PaymentFilter1Fields;
+}
+
+export type PaymentFilterFieldsOneOfTwoItem = typeof PaymentFilterFieldsOneOfTwoItem[keyof typeof PaymentFilterFieldsOneOfTwoItem];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PaymentFilterFieldsOneOfTwoItem = {
+  _id: '_id',
+  amount: 'amount',
+  state: 'state',
+  timeStamp: 'timeStamp',
+} as const;
+
+export type PaymentFilterFieldsOneOf = {
+  _id?: boolean;
+  amount?: boolean;
+  state?: boolean;
+  timeStamp?: boolean;
+};
+
+export type PaymentFilterFields = PaymentFilterFieldsOneOf | PaymentFilterFieldsOneOfTwoItem[];
+
+export type PaymentFilterOrder = string | string[];
+
+export interface PaymentFilter {
+  offset?: number;
+  limit?: number;
+  skip?: number;
+  order?: PaymentFilterOrder;
+  fields?: PaymentFilterFields;
 }
 
 export type InventoryFilter1FieldsOneOfTwoItem = typeof InventoryFilter1FieldsOneOfTwoItem[keyof typeof InventoryFilter1FieldsOneOfTwoItem];
@@ -214,6 +343,15 @@ export type InventoryFilter1Fields = InventoryFilter1FieldsOneOf | InventoryFilt
 export type InventoryFilter1Where = { [key: string]: any };
 
 export type InventoryFilter1Order = string | string[];
+
+export interface InventoryFilter1 {
+  offset?: number;
+  limit?: number;
+  skip?: number;
+  order?: InventoryFilter1Order;
+  where?: InventoryFilter1Where;
+  fields?: InventoryFilter1Fields;
+}
 
 export type InventoryFilterFieldsOneOfTwoItem = typeof InventoryFilterFieldsOneOfTwoItem[keyof typeof InventoryFilterFieldsOneOfTwoItem];
 
@@ -373,6 +511,38 @@ export interface User {
  }
 
 /**
+ * (tsType: Partial<ShoppingCart>, schemaOptions: { partial: true })
+ */
+export interface ShoppingCartPartial {
+  _id?: string;
+  active?: boolean;
+  expireOn?: string;
+}
+
+/**
+ * (tsType: ShoppingCartWithRelations, schemaOptions: { includeRelations: true })
+ */
+export interface ShoppingCartWithRelations {
+  _id?: string;
+  active: boolean;
+  expireOn: string;
+}
+
+/**
+ * (tsType: Omit<ShoppingCart, '_id'>, schemaOptions: { title: 'NewShoppingCart', exclude: [ '_id' ] })
+ */
+export interface NewShoppingCart {
+  active: boolean;
+  expireOn: string;
+}
+
+export interface ShoppingCart {
+  _id?: string;
+  active: boolean;
+  expireOn: string;
+}
+
+/**
  * (tsType: Partial<Products>, schemaOptions: { partial: true })
  */
 export interface ProductsPartial {
@@ -426,6 +596,42 @@ export interface Products {
   categoryId: string;
   createdOn?: string;
   updatedOn?: string;
+}
+
+/**
+ * (tsType: Partial<Payment>, schemaOptions: { partial: true })
+ */
+export interface PaymentPartial {
+  _id?: string;
+  amount?: number;
+  state?: string;
+  timeStamp?: string;
+}
+
+/**
+ * (tsType: PaymentWithRelations, schemaOptions: { includeRelations: true })
+ */
+export interface PaymentWithRelations {
+  _id?: string;
+  amount: number;
+  state: string;
+  timeStamp?: string;
+}
+
+/**
+ * (tsType: Omit<Payment, '_id'>, schemaOptions: { title: 'NewPayment', exclude: [ '_id' ] })
+ */
+export interface NewPayment {
+  amount: number;
+  state: string;
+  timeStamp?: string;
+}
+
+export interface Payment {
+  _id?: string;
+  amount: number;
+  state: string;
+  timeStamp?: string;
 }
 
 /**
