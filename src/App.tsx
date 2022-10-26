@@ -4,7 +4,7 @@ import ProductsPage from './components/products/ProductsPage';
 
 import CustomerList from './CustomerList';
 import Login from './components/login/Login';
-import NavBar from './NavBar';
+import NavBar from './components/navBar/NavBar';
 import ShoppingCart from './ShoppingCart';
 
 const App = (): JSX.Element => {

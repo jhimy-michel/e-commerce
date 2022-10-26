@@ -1,4 +1,5 @@
 import React from 'react';
+import Profile from '../profile/Profile';
 
 function NavBar() {
   return (
@@ -30,13 +31,11 @@ function NavBar() {
                 Shopping Cart
               </a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/profile">
-                Profile
-              </a>
-            </li>
           </ul>
         </div>
+        <a className="navbar-brand">
+          <Profile />
+        </a>
       </div>
     </nav>
   );
