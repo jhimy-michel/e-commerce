@@ -1,10 +1,17 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
+import { useParams } from 'react-router';
 
 import ShoppingCart from '../../ShoppingCart';
 import Category from '../categories/Category';
+import Products from './Products';
 
 function ProductsPage() {
+  const params = useParams();
+  console.log(params);
+
+  const id = params.id ? params.id : '';
+
   return (
     <>
       <Container fluid>
@@ -19,7 +26,7 @@ function ProductsPage() {
           </Col>
           <Col xs="8">
             List of products
-            <ShoppingCart />
+            <Products id={id} />
           </Col>
         </Row>
       </Container>

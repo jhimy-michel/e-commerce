@@ -2,7 +2,10 @@ import { AxiosError } from 'axios';
 import React, { useState } from 'react';
 import { Alert, Button, Card, Col, Row } from 'react-bootstrap';
 import { CardBody, CardHeader, Toast } from 'reactstrap';
-import { authenticationControllerLogin } from '../../api/endpoints/authentication-controller';
+import {
+  authenticationControllerLogin,
+  useAuthenticationControllerLogin
+} from '../../api/endpoints/authentication-controller';
 import { LoginFailure } from '../../api/endpoints/ecommerceApi.schemas';
 
 function Login() {
@@ -11,12 +14,12 @@ function Login() {
   const [message, setMessage] = useState<React.ReactNode>(<></>);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const handleLogin = async (email: string, password: string): Promise<void> => {
+  const handleLogin = async (): Promise<void> => {
     setLoading(true);
     try {
       const login = await authenticationControllerLogin({ email, password });
 
-      if (login?.token) {
+      if (login?.token != null) {
         localStorage.setItem('TOKEN', login.token);
         setMessage(<Alert color="success">Login successful</Alert>);
       }
@@ -50,14 +53,7 @@ function Login() {
               />
               {message}
               <br />
-              <Button
-                color="primary"
-                disabled={loading}
-                // eslint-disable-next-line @typescript-eslint/no-misused-promises
-                onClick={async () => {
-                  await handleLogin(email, password);
-                }}
-              >
+              <Button color="primary" disabled={loading} onClick={() => handleLogin}>
                 Login
               </Button>
             </CardBody>
